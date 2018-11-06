@@ -1,3 +1,9 @@
+# By Miracle
+.idea/
+.python-version
+coupon-site.log
+error.log
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
