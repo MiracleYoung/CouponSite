@@ -4,12 +4,12 @@
 import logging
 import logging.config
 
-from app.etc.settings import LOGGING_CONFIG
+from app.etc.conf import config
 
 __all__ = ['logger']
 
 
-def setup_logging(cfg=LOGGING_CONFIG):
+def setup_logging(cfg=config.LOGGING_CONFIG):
     logging.config.dictConfig(cfg)
     return logging.getLogger(__file__)
 
