@@ -3,5 +3,3 @@
 # @Time    : 11/6/18
 
 __author__ = 'MiracleYoung'
-
-from .logger import logger

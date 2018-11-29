@@ -18,7 +18,7 @@ NEWSPIDER_MODULE = 'crawler.spiders'
 # USER_AGENT = 'crawler (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # CONCURRENT_REQUESTS = 32
@@ -107,3 +107,5 @@ ITEM_PIPELINES = {
     'crawler.pipelines.CrawlerPipeline': 100,
     'crawler.pipelines.MongoPipeline': 200,
 }
+
+

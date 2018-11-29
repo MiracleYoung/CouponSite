@@ -19,3 +19,6 @@ class DoubanItem(scrapy.Item):
     movie = scrapy.Field()
     score = scrapy.Field()
     score_num = scrapy.Field()
+
+
+

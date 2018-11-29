@@ -5,9 +5,25 @@
 __author__ = 'MiracleYoung'
 
 import os
+import functools
+
+from app.core.exceptions import CouponException
+
+DEBUG = True
 
 
-class BaseConfig:
+def Const(cls):
+    @functools.wraps(cls)
+    def new_setattr(self, name, value):
+        raise CouponException(f'Const: {name} can not be rewrite.')
+
+    cls.__setattr__ = new_setattr
+
+    return cls
+
+
+@Const
+class _BaseConfig:
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     LOG_DIR = os.path.join(BASE_DIR, 'log')
 
@@ -64,10 +80,24 @@ class BaseConfig:
     }
 
 
-class DevConfig(BaseConfig):
+@Const
+class _DevConfig(_BaseConfig):
     MONGO_URI = "mongodb://localhost:27017/"
     MONGO_DB = "CouponSite"
     MONGO_COLLECTION = "OriginItem"
 
 
-config = DevConfig
+@Const
+class _ProdConfig(_BaseConfig):
+    pass
+
+
+@Const
+class _CouponConfig:
+    _dev = _DevConfig()
+    _prod = _ProdConfig()
+    conf = _dev if DEBUG else _prod
+
+
+CouponConfig = _CouponConfig()
+CouponConfig = CouponConfig.conf

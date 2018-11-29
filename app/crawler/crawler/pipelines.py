@@ -7,7 +7,7 @@
 
 import pymongo
 
-from app.etc.conf import config
+from app.conf.gconf import CouponConfig
 
 
 class CrawlerPipeline(object):
@@ -15,13 +15,14 @@ class CrawlerPipeline(object):
         return item
 
 
-class MongoDBPipeline:
-    collection = config.MONGO_COLLECTION
-    mongodb_uri = config.MONGO_URI
-    db = config.MONGO_DB
+class MongoPipeline:
+    collection = CouponConfig.MONGO_COLLECTION
+    mongo_uri = CouponConfig.MONGO_URI
+    mongo_db = CouponConfig.MONGO_DB
 
     def open_spider(self, spider):
-        self.client = pymongo.MongoClient(self.mongodb_uri)
+        self.client = pymongo.MongoClient(self.mongo_uri)
+        self.db = self.client[self.mongo_db]
 
     def close_spider(self, spider):
         self.client.close()

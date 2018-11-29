@@ -6,7 +6,7 @@ __author__ = 'MiracleYoung'
 
 from scrapy import Request
 from scrapy.spiders import Spider
-from ..items import DoubanItem
+from ..items.items import DoubanItem
 
 
 class DoubanSpider(Spider):
